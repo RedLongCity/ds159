@@ -15,10 +15,9 @@ import java.util.logging.Logger;
 
 public class SimpleRequest implements SimpleRequestConstants {
     
-    URL url;
+    
     
     public SimpleRequest() throws MalformedURLException{
-        url = new URL("http://api.ittour.com.ua/module/params/318?entity=hotel:meal_type:from_city");
     }
     
     public String getRequest(String url){
@@ -32,15 +31,11 @@ public class SimpleRequest implements SimpleRequestConstants {
         
         return content;
     }
-
-    public URL getUrl() {
-        return url;
-    }
-
-    public void setUrl(URL url) {
-        this.url = url;
-    }
     
-    
+    public String getAnotherGet(String url) throws IOException{
+        String content = null;
+        content = HttpUtils.anotherGet(url);
+        return content;
+    }
     
 }
