@@ -1,4 +1,4 @@
-package com.mycompany.utils;
+package com.mycompany.simplerequest.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,6 +1,6 @@
 package com.mycompany.simplerequest;
 
-import com.mycompany.utils.HttpUtils;
+import com.mycompany.simplerequest.utils.HttpUtils;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
