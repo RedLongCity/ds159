@@ -37,17 +37,22 @@ public class CountryServiceImpl implements CountryService{
 
     @Override
     public void deleteCountryById(String id) {
-        
+        countryDao.deleteById(id);
     }
 
     @Override
     public List<Country> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return countryDao.findAll();
     }
 
     @Override
     public void deleteAllCountries() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Country> countryList = countryDao.findAll();
+        if(countryList!=null){
+            for(Country country: countryList){
+                countryDao.deleteById(country.getId());
+            }
+        }
     }
     
 }
