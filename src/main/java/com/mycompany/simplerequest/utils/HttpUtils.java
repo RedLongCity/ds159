@@ -68,7 +68,6 @@ public class HttpUtils implements SimpleRequestConstants{
 			return Request.Get(url)
 				.connectTimeout(CONNECT_TIMEOUT)
 				.socketTimeout(SOCKET_TIMEOUT)
-                                .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11")
                                 .addHeader(authorization,authorization_token)
                                 .addHeader(acceptLanguage, response_language)
 				.execute()
@@ -78,6 +77,20 @@ public class HttpUtils implements SimpleRequestConstants{
                     throw e;
 		}
 	}
+        
+        public static JsonNode getJsonNodeFromUrl(String url) throws IOException{
+            try{
+                return Request.Get(url)
+                        .connectTimeout(CONNECT_TIMEOUT)
+                        .socketTimeout(SOCKET_TIMEOUT)
+                        .addHeader(authorization,authorization_token)
+                        .addHeader(acceptLanguage, response_language)
+                        .execute()
+                        .handleResponse(JSONNODE_CONTENT_HANDLER);
+            }catch(IOException e){
+                throw e;
+            }
+        }
 
 	public static Content postWithBodyAsRawRequestAsContent(String url, String body) throws IOException{
 		try{
@@ -110,25 +123,5 @@ public class HttpUtils implements SimpleRequestConstants{
 			throw e;
 		}
 	}
-        
-        public static String anotherGet(String url) throws MalformedURLException, IOException{
-            try{
-            URLConnection connection = new URL(url).openConnection();
-            connection.setRequestProperty(authorization, authorization_token);
-            connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
-            connection.connect();
-            
-            BufferedReader r  = new BufferedReader(new InputStreamReader(connection.getInputStream(), Charset.forName("UTF-8")));
 
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = r.readLine()) != null) {
-                sb.append(line);
-            }
-            return sb.toString();
-            }
-		catch(IOException e){
-			throw e;
-		}
-        }
 }

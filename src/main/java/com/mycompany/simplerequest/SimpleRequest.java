@@ -32,10 +32,4 @@ public class SimpleRequest implements SimpleRequestConstants {
         return content;
     }
     
-    public String getAnotherGet(String url) throws IOException{
-        String content = null;
-        content = HttpUtils.anotherGet(url);
-        return content;
-    }
-    
 }
